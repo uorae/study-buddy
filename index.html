@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" />
+  <title>study buddy</title>
+</head>
+<body>
+  <div class="scene" id="menu-scene">
+    <img src="assets/sleeping.png" alt="your pet is sleeping" >
+    <div class="timer-div">
+      <button type="button" id="focus-button">start studying!</button>
+    </div>
+    <div class="buddy-div">
+
+    </div>
+    
+    <div id="timer-popup">
+      <div class="input-container">
+        <button type="button" id="subtract-button"> - </button>
+        <input type="text" id="timer-minutes" name="minutes"/>
+        <button type="button" id="add-button"> + </button>
+      </div>
+      <button type="button" id="start-timer-button">start!</button>
+    </div>
+  </div>
+
+  <div class="scene" id="study-scene">
+    <img src="assets/reading.png" alt="your pet is studying" >
+    <div class="timer-div" id="timer">
+      <p></p>
+    </div>
+    <div class="buddy-div">
+
+    </div>
+  </div>
+  <script src="./script.js"></script>
+</body>
+</html>
