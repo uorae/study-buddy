@@ -1,3 +1,3 @@
 ## study buddy
-pomodoro study timer
+a customisable study timer
 
