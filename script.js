@@ -46,7 +46,7 @@ const openTimer = () => {
     popup.style.display = "none";
     goToScene("study");
     console.log("Starting timer for:", minutes, "minutes");
-    displayTimer(minutes);
+    displayTimer(minutes * 60 * 1000);
   } else {
     console.log("Invalid input:", val);
   }
@@ -81,8 +81,12 @@ subtractButton.addEventListener('click', () => {
 /***************************************************************
                        STUDY SCENE
 ***************************************************************/
-const displayTimer = (totalMinutes) => {
-  const deadline = Date.now() + totalMinutes * 60 * 1000;
+let timerInterval;
+let timeLeft = 0;
+
+const displayTimer = (totalMs) => {
+  timeLeft = totalMs; 
+  const deadline = Date.now() + timeLeft;
 
   const count = () => {
     const now = Date.now();
@@ -91,6 +95,7 @@ const displayTimer = (totalMinutes) => {
     if (t <= 0) {
       document.getElementById("timer").textContent = "time's up";
       clearInterval(timerInterval);
+      goToScene("menu");
       return;
     }
 
@@ -102,8 +107,31 @@ const displayTimer = (totalMinutes) => {
       (hours > 0 ? hours + ":" : "") +
       String(minutes).padStart(2, "0") + ":" +
       String(seconds).padStart(2, "0");
+
+    timeLeft = t;
+    console.log(timeLeft);
   };
 
-  const timerInterval = setInterval(count, 1000);
+  clearInterval(timerInterval);
+  timerInterval = setInterval(count, 1000);
   count();
 };
+
+document.getElementById("pause-timer-button").addEventListener("click", () => {
+  clearInterval(timerInterval); // stop countdown
+  document.getElementById("resume-timer-button").style.display = "block";
+  document.getElementById("pause-timer-button").style.display = "none";
+});
+
+document.getElementById("resume-timer-button").addEventListener("click", () => {
+  displayTimer(timeLeft);
+  console.log(timeLeft);
+  document.getElementById("pause-timer-button").style.display = "block";
+  document.getElementById("resume-timer-button").style.display = "none";
+});
+
+document.getElementById("end-timer-button").addEventListener("click", () => {
+  clearInterval(timerInterval); // stop countdown
+  timeLeft = 0;
+  goToScene("menu");
+});

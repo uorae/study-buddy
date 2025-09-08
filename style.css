@@ -86,12 +86,17 @@ button:hover {
   width: 350px;
 }
 
+#timer-popup p {
+  font-size: 1.5rem;
+  margin-top: 10%;
+}
+
 .input-container {
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 15%;
+  margin-top: 0;
 }
 
 #timer-minutes {
@@ -104,5 +109,14 @@ button:hover {
   font-family: Pixelify-sans, Arial, sans-serif;
   font-size: 3rem;
   color: #98B6B1;
-  margin: 15% 27% 15% 25%;
+  margin: 0 27% 15% 25%;
+}
+
+#control-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+#resume-timer-button {
+  display: none;
 }
